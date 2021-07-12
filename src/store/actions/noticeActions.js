@@ -37,9 +37,9 @@ if(project.id1!=='a'){
       uid:authorId,     
       createdAt: new Date()
     }).then(() => {
-      dispatch({ type: 'CREATE_VisitingDr_SUCCESS' });
+      dispatch({ type: 'CREATE_NOTICE_SUCEESS' });
     }).catch(err => {
-      dispatch({ type: 'CREATE_Visiting_ERROR' }, err);
+      dispatch({ type: 'CREATE_NOTICE_ERROR' }, err);
     });
   }
 

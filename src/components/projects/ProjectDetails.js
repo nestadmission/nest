@@ -18,13 +18,10 @@ const ProjectDetails = (props) => {
       <div className="card">
         <div className="card-image">
           <img  height='250px' src={project.furl}/>
-          <span className="card-title"><b>{project.firm}</b></span>
+         
         </div>
         <div className="card-content">
-          <p>{project.address}</p>
-         <p>{project.owner}</p>          
-         <p> {project.products}</p>
-          {project.brands}
+        
         </div>
         <div class="card-action">
           <a href="#">This is a link</a>
@@ -57,7 +54,7 @@ const mapStateToProps = (state, ownProps) => {
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{
-    collection: 'notice'
+  firestoreConnect((props) =>[{
+    collection: 'notice',where: [['uid', '==', props.auth.uid]]
   }])
 )(ProjectDetails)

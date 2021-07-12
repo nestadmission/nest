@@ -14,10 +14,10 @@ const projectReducer = (state = initState, action) => {
       case 'edit_PROJECT_ERROR':
         console.log('create project error');
         return state;
-      case 'CREATE_Notice_SUCCESS':
+      case 'CREATE_NOTICE_SUCCESS':
         console.log('create project error');
-        return state;
-        case 'CREATE_Notice_ERROR':
+        return {...state};
+        case 'CREATE_NOTICE_ERROR':
         console.log('create project error');
         return state;
 
