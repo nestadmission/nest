@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Navbar1 from './components/layout/Navbar'
-
+import Dashinst from './components/dashboard/Dashinst';
 import Dashboard from './components/dashboard/Dashboard'
 import DashUsers from './components/dashboard/DashUsers';
 import DashboardView from './components/projects/viewNoticeDatas'
@@ -16,6 +16,7 @@ import CreateMedia from './components/projects/mediaForm';
 import CreateNotice from './components/projects/Hookform';
 //import EditNotice from './components/projects/EditNotice';
 import EditNotice from './components/projects/HookformEdit'
+
 const App = () => {
 
     console.log('app',)
@@ -26,6 +27,7 @@ const App = () => {
           <Switch>
             <Route exact path='/users' component={Dashboard} />
             <Route path='/dash' component={DashUsers} />
+            <Route path='/tc' component={Dashinst} />
             <Route path='/view' component={DashboardView} />
             <Route path='/project/:id' component={ProjectDetails} />
             <Route path='/edit/:id' component={EditNotice} />

@@ -29,6 +29,8 @@ const CreateNotice1 = ({ project, id, auth }) => {
       course: id !== 'a' ? project.course : '',
       payment: id !== 'a' ? project.payment : '',
       Education: id !== 'a' ? project.Education : '',
+      Edu_taka: id !== 'a' ? project.Edu_taka : '',
+      University:id!== 'a'? project.University:'',
       Marital: id !== 'a' ? project.Marital : '',
       Nationality: id !== 'a' ? project.Nationality : '',
       Employee: id !== 'a' ? project.Employee : '',
@@ -62,6 +64,7 @@ const CreateNotice1 = ({ project, id, auth }) => {
     setValue("project.furl", '123')
     console.log('my data auth', auth)
     alert('Saving')
+    //alert('serer is down please call 9974021397')
     dispatch(createProject(data))
     history.push('/edit/' + auth.uid);
     //history.push('/dash');
@@ -238,13 +241,17 @@ const CreateNotice1 = ({ project, id, auth }) => {
         </div>
 
         <div >
-          <input type="text" placeholder="Surname First name Last Name" {...register("FirstName", { required: true, maxLength: 80 })} />
+          <input type="text" placeholder="Surname First name Last Name" {...register("FirstName", { required: true, maxLength: 180 })} />
+          {errors.FirstName && errors.FirstName.type === "required" && <span style={{ background: 'red' }}>Please enter full name</span>}
+          
+         
           <textarea type="text" placeholder="Present Address" {...register("Address1", { required: true })} />
+          {errors.Address1 && errors.Address1.type === "required" && <span style={{ background: 'red' }}>Address</span>}
+          
+          <div className="row">
+            <div className="col s9"><h6>Permanent address is same as above ?</h6></div>
 
-          <div class="row">
-            <div class="col s9"><h6>Permanent address is same as above ?</h6></div>
-
-            <div class="col s3">
+            <div className="col s3">
               <select {...register("Address0", { required: true })} >
 
                 <option value="1">Yes</option>
@@ -256,7 +263,7 @@ const CreateNotice1 = ({ project, id, auth }) => {
           {watchAddress === '2' && <textarea type="text" placeholder="Permanent address"  {...register("Address2", { required: true, maxLength: 300 })} />}
 
 
-          <input type="tel" placeholder="Mobile number-(10 digit)" {...register("Mobile", { required: true, minLength: 10, maxLength: 10 })} />
+          <input type="tel" placeholder="Mobile number-(10 digit)" {...register("Mobile", { required: true, minLength: 10, maxLength: 11 })} />
           {errors.Mobile && errors.Mobile.type === "required" && <span style={{ background: 'red' }}>ple.. enter 10 digit Mobile no.</span>}
           {errors.Mobile && errors.Mobile.type === "minLength" && <span style={{ background: 'red' }}>lessthen 10 digit.</span>}
           {errors.Mobile && errors.Mobile.type === "maxLength" && <span style={{ background: 'red' }}>more then 10 digit.</span>}
@@ -269,15 +276,15 @@ const CreateNotice1 = ({ project, id, auth }) => {
               {errors.Bdate && errors.Bdate.type === "required" && <span style={{ background: 'red' }}>ple.. enter birth date</span>}
             </div>
           </div>
-          <div class="row">
+          <div className="row">
             
-            <div class="col s3"><h6>Birthplace </h6></div>
-            <div class="col s4">
+            <div className="col s3"><h6>Birthplace </h6></div>
+            <div className="col s4">
             <input type="text" placeholder="Birth place" {...register("Bplace", { required: true })} />
               {errors.Bplace && errors.Bplace.type === "required" && <span style={{ background: 'red' }}>Birth place </span>}
      
             </div>
-            <div class="col s5">
+            <div className="col s5">
               <select {...register("Domicile", { required: true })} >
               <option value="0">Seletct State  </option>
                 <option value="Gujarat">Within Gujarat</option>
@@ -296,10 +303,10 @@ const CreateNotice1 = ({ project, id, auth }) => {
           
 
 
-          <div class="row">
-            <div class="col s6">Select Category (cast)?</div>
+          <div className="row">
+            <div className="col s6">Select Category (cast)?</div>
 
-            <div class="col s6">
+            <div className="col s6">
               <select {...register("Category", { required: true })} >
 
                 <option value="SC">SC</option>
@@ -326,10 +333,10 @@ const CreateNotice1 = ({ project, id, auth }) => {
             )
             */}
 
-          <div class="row">
-            <div class="col s9">Select Qualification(Topmost)?</div>
+          <div className="row">
+            <div className="col s9">Select Qualification(Topmost)?</div>
 
-            <div class="col s3">
+            <div className="col s3">
               <select {...register("Education", { required: true })} >
 
                 <option value="Diploma">Diploma </option>
@@ -341,15 +348,28 @@ const CreateNotice1 = ({ project, id, auth }) => {
             </div>
             {errors.Education && errors.Education.type === "required" && <span style={{ background: 'red' }}>Select topmost Education</span>}
           </div>
+          University and percentage
+           <div className='row'>
+            <div className='col s7'>
+            <input type="text" placeholder="Name of University " {...register("University", { required: true, maxLength: 180 })} />
+            {errors.University && errors.University.type === "required" && <span style={{ background: 'red' }}>Enter University name</span>}
+            </div>
+            <div className='col s5'>
+            <input type="text" placeholder="Percentage (**.**) " {...register("Edu_taka", { required: true, maxLength: 5 })} />
+            {errors.Edu_taka && errors.University.type === "required" && <span style={{ background: 'red' }}>Enter % **.** formate</span>}
+           
+            </div>
+            </div>   
+
           {/*(watchEducation === 'Diploma' || watchEducation === 'BSc') &&
             (<div className='row' style={{ color: 'red' }} >
               <b>You must have at least two years of experience (Excluding training) </b>
             </div>
           )*/}
              Please select Marital status and Nationality
-          <div class="row">
+          <div className="row">
            
-            <div class="col s6">
+            <div className="col s6">
               <select {...register("Marital", { required: true })} >
                 <option value="Married">Married</option>
                 <option value="Unmarried">Unmarried</option>
@@ -358,7 +378,7 @@ const CreateNotice1 = ({ project, id, auth }) => {
           
             </div>
 
-            <div class="col s6">
+            <div className="col s6">
               <select {...register("Nationality", { required: true })} >
 
                 <option value="INDIAN">Indian</option>
@@ -371,9 +391,9 @@ const CreateNotice1 = ({ project, id, auth }) => {
           </div>
            
           <div className='row'>
-            <div class="col s9">Are you a current employee of any organization?</div>
+            <div className="col s9">Are you a current employee of any organization?</div>
 
-            <div class="col s3">
+            <div className="col s3">
               <select {...register("Employee", { required: true })} >
 
                 <option value="Employee">Yes</option>
@@ -445,9 +465,10 @@ const CreateNotice1 = ({ project, id, auth }) => {
         <input type="file" accept="image/*" onChange={handleImageUpload} /></div> 
 
         )}
- {watchfurl  && <input type="submit" />    }
+ {watchfurl  && <input className="waves-effect waves-light btn-large"  type="submit" />    }
         <div>
-
+          <br/>
+         
           {/*(id !== 'a') ? null : <input type="submit" />*/}
         </div>
       </form>
